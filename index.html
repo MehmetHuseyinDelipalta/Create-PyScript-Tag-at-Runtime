@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create PyScript Tag at Runtime</title>
+</head>
+
+<body>
+    <div id="mhdStatus">Loading</div>
+
+    <script src="executes/exec_py.js"></script>
+    <script>
+        // pycode contains the Python program
+        var pycode =
+            `
+            from datetime import datetime
+            from js import document
+            document.getElementById("mhdStatus").innerHTML = 'Python Loaded and Running'
+            print(datetime.now())
+            `;
+        // Load the code into a py-script tag and then execute
+        run_python(pycode);
+    </script>
+    <script>
+        window.onload = function () {
+            var script = document.createElement('script');
+            var link = document.createElement('link');
+            script.src = 'https://pyscript.net/alpha/pyscript.js';
+            link.href = 'https://pyscript.net/alpha/pyscript.css';
+            link.rel = 'stylesheet';
+            document.body.appendChild(script);
+            document.head.appendChild(link);
+        }
+    </script>
+</body>
+
+</html>
